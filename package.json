@@ -7,11 +7,17 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "test"
+    "test": "mocha ./tests",
+	 "start": "node app.js"
   },
   "keywords": [
     "tp"
   ],
   "author": "Julien DUCROT, Maxence BARJON, Eloi MOUREZ",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mocha": "^5.2.0"
+  },
+  "private": true
 }
