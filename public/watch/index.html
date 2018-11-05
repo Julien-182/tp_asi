@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home - Watch</title>
+  </head>
+  <body>
+    <style media="screen">
+      body,html{
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      main{
+        height: 100%;
+        width: 100%;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #watch-text{
+        font-family: cursive;
+        color: blue;
+        font-size: 3em;
+        animation: rotate 3s infinite ease-in;
+      }
+
+      @keyframes rotate {
+        50%{ transform: rotateZ(180deg) scale(1.2);}
+        100%{ transform: rotateZ(360deg)scale(1);}
+      }
+    </style>
+
+    <main>
+      <p id="watch-text">Watch</p>
+    </main>
+  </body>
+</html>
