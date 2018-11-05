@@ -1,0 +1,17 @@
+{
+  "name": "tp",
+  "version": "1.0.0",
+  "description": "Premier tp d'ASI",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "tp"
+  ],
+  "author": "Julien DUCROT, Maxence BARJON, Eloi MOUREZ",
+  "license": "ISC"
+}
