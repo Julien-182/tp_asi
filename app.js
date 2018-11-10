@@ -11,6 +11,7 @@ process.env.CONFIG = JSON.stringify(CONFIG);
 
 var defaultRoute = require("./app/routes/default.route.js");
 var presentationRoute = require("./app/routes/presentation.route.js");
+var contentRoute = require("./app/routes/content.route.js");
 
 
 // init server
@@ -18,6 +19,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(defaultRoute);
 app.use(presentationRoute);
+app.use(contentRoute);
 
 // static routes
 app.use("/admin", express.static(path.join(__dirname, "public/admin")));
