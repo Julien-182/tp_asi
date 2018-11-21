@@ -1,8 +1,6 @@
-"use strict";
-
 describe('Test de content.model', () => {
 
-    const CONFIG = require('../config.json');
+    const CONFIG = require('../config');
     CONFIG.contentDirectory = `${CONFIG.contentDirectory}_test_${Date.now()}`;
     process.env.CONFIG = JSON.stringify(CONFIG);
 

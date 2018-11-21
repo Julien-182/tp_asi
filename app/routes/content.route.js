@@ -23,4 +23,4 @@ router.post("/contents", multerMiddleware.single("file"), contentController.crea
 router.route('/contents/:contentId')
   .get(contentController.read)
   .put(contentController.update)
-  .delete(contentController.update);
+  .delete(contentController.remove);
