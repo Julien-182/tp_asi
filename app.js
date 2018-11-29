@@ -13,6 +13,8 @@ var defaultRoute = require("./app/routes/default.route.js");
 var presentationRoute = require("./app/routes/presentation.route.js");
 var contentRoute = require("./app/routes/content.route.js");
 
+var IOController = require("./app/controllers/io.controller.js");
+
 
 // init server
 var app = express();
@@ -24,8 +26,11 @@ app.use(contentRoute);
 // static routes
 app.use("/admin", express.static(path.join(__dirname, "public/admin")));
 app.use("/watch", express.static(path.join(__dirname, "public/watch")));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 var server = http.createServer(app);
 server.listen(CONFIG.port, function(err){
 });
+
+IOController.listen(server);

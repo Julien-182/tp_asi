@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Home - Watch</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
   <body>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
     <style media="screen">
       body,html{
         margin: 0;
@@ -16,27 +19,96 @@
       main{
         height: 100%;
         width: 100%;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background-color: #333;
+        overflow: hidden;
       }
 
-      #watch-text{
-        font-family: cursive;
-        color: blue;
-        font-size: 3em;
-        animation: rotate 3s infinite ease-in;
+      .hr{
+        display: inline-block;
+        width: 80%;
+        border-bottom: 1px solid #aaa;
+        margin-bottom: 1em;
       }
 
-      @keyframes rotate {
-        50%{ transform: rotateZ(180deg) scale(1.2);}
-        100%{ transform: rotateZ(360deg)scale(1);}
+      #slide{
+        width: 100%;
+        height: 100%;
+        padding: 1em 2em;
+        background-color: #E6E6E6;
+        font-family: Roboto, sans-serif;
       }
+
+      #slide h1#title{
+
+      }
+
+      #slide #slideContent{
+        overflow: hidden;
+      }
+
+      #slide #slideContent img{
+        max-height: 75vh;
+        width: auto;
+      }
+
     </style>
 
     <main>
-      <p id="watch-text">Watch</p>
+      <div id="slide">
+        <h1 id="title">...</h1>
+        <span class="hr"></span>
+        <div id="slideContent">
+          <p>...</p>
+        </div>
+      </div>
     </main>
+
+    <script type="text/javascript">
+      var slide = document.getElementById('slide');
+      var socket = io.connect();
+
+      /*  Sockets  */
+      socket.emit('connection');
+      socket.on('connection', function(data){
+        socket.emit('data_comm',{'id':socket.id});
+      });
+
+      socket.on("currentSlidEvent", function(data){
+        updateDisplay(data);
+      });
+
+
+      /////////////////////////////
+
+      function updateDisplay(data){
+        if(slide){
+
+          if(data.type && data.title){
+            title.innerHTML = data.title;
+
+            while (slideContent.children.length > 0) {
+                slideContent.removeChild(slideContent.lastChild);
+            }
+
+            if(data.type == "text"){
+              var text = document.createElement("p");
+              text.innerHTML = data.data;
+              slideContent.appendChild(text);
+            }
+            if(data.type == "img_url"){
+              var img = document.createElement("img");
+              img.src = data.src;
+              slideContent.appendChild(img);
+            }
+            if(data.type == "img"){
+              var img = document.createElement("img");
+              img.src = data.fileName;
+              slideContent.appendChild(img);
+            }
+          }
+
+        }
+      }
+    </script>
   </body>
 </html>

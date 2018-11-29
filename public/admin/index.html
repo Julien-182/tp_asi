@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Home - Admin</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   </head>
   <body>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
     <style media="screen">
       body,html{
         margin: 0;
@@ -16,27 +19,116 @@
       main{
         height: 100%;
         width: 100%;
-        background-color: blue;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        background-color: #E6E6E6;
       }
 
-      #admin-text{
-        font-family: cursive;
-        color: red;
-        font-size: 3em;
-        animation: rotate 3s infinite ease-in;
+      #actions{
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0.5;
+        transition: 0.25s;
+        width: 100%;
+        text-align: center;
+        transition: 0.25s;
       }
 
-      @keyframes rotate {
-        50%{ transform: rotateZ(180deg) scale(1.2);}
-        100%{ transform: rotateZ(360deg)scale(1);}
+      #actions:hover{
+        opacity: 1;
+        bottom: 10px;
+        transition: 0.25s;
+        transform: translateX(-50%) scale(1);
       }
+
+      #actions i{
+        text-align: center;
+        color: #5A5A5A;
+        width: 1em;
+        font-size: 2.2em;
+        padding: 0.25em;
+        border: 1px solid #999;
+        border-radius: 3px;
+        transition: 0.25s;
+      }
+
+      #actions i:hover{
+        cursor: pointer;
+        background-color: #ededed;
+        box-shadow: 0 0 1px #333;
+        transform: scale(1.1);
+      }
+
     </style>
 
     <main>
-      <p id="admin-text">Admin</p>
+      <section id="actions">
+        <i id="slideBegin" class="fas fa-angle-double-left"></i>
+        <i id="slidePrevious" class="fas fa-angle-left"></i>
+        <i id="slidePlay" class="fas fa-play"></i>
+        <i id="slidePause" class="fas fa-pause"></i>
+        <i id="slideNext" class="fas fa-angle-right"></i>
+        <i id="slideEnd" class="fas fa-angle-double-right"></i>
+      </section>
     </main>
+
+    <script type="text/javascript">
+      var socket = io.connect();
+
+      socket.emit('connection');
+      socket.on('connection', function(data){
+        socket.emit('data_comm',{'id':socket.id});
+      });
+
+
+      /* Event listeners */
+      slideBegin.addEventListener("click",function(){
+        console.log("BEGIN");
+        socket.emit('slidEvent', {
+          "CMD": "BEGIN",
+          "PRES_ID": null,
+        });
+      });
+
+      slidePrevious.addEventListener("click",function(){
+        console.log("PREV");
+        socket.emit('slidEvent', {
+          "CMD": "PREV",
+          "PRES_ID": null,
+        });
+      });
+
+      slidePlay.addEventListener("click",function(){
+        console.log("PLAY");
+        socket.emit('slidEvent', {
+          "CMD": "PLAY",
+          "PRES_ID": null,
+        });
+      });
+
+      slidePause.addEventListener("click",function(){
+        console.log("PAUSE");
+        socket.emit('slidEvent', {
+          "CMD": "PAUSE",
+          "PRES_ID": null,
+        });
+      });
+
+      slideNext.addEventListener("click",function(){
+        console.log("NEXT");
+        socket.emit('slidEvent', {
+          "CMD": "NEXT",
+          "PRES_ID": null,
+        });
+      });
+
+      slideEnd.addEventListener("click",function(){
+        console.log("END");
+        socket.emit('slidEvent', {
+          "CMD": "END",
+          "PRES_ID": null,
+        });
+      });
+    </script>
   </body>
 </html>

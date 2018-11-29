@@ -54,7 +54,7 @@ class ContentController {
         res.end(err.message);
         return;
       }
-
+      
       if(req.query.json === 'true'){
         res.writeHead(200);
         res.end(JSON.stringify(data));
