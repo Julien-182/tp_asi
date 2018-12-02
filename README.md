@@ -1,5 +1,19 @@
 # PowerPoint NodeJS Part
 
+## Installation
+
+Installer les dépendances.
+
+`npm install`
+
+Lancer le projet
+
+`npm start`
+
+Lancer les tests
+
+`npm test`
+
 ## API
 
 * Presentation
