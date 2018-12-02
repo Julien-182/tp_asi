@@ -36,9 +36,9 @@ class IOController {
 
               var content = {
                 id: '63cd3d02-a104-4725-b5dd-c55d6a7550af',
-                title:'Ratatouille mdrrrrr',
+                title:'La creuse',
                 type: 'img_url',
-                src : 'https://i.redd.it/girpqx5hv9121.jpg'
+                src : 'https://www.detoursenfrance.fr/sites/art-de-vivre/files/styles/large/public/la-creuse-village-gargilesse-dampierre_0.jpg?itok=Bfg8x7Pd'
               };
               // TODO récupérer content de la présentation
 
